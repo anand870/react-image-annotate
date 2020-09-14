@@ -19,6 +19,10 @@ export const RegionTags = ({
   mouseEvents,
   regionClsList,
   regionTagList,
+  allowMetaText,
+  showClsLabel,
+  showTextLabel,
+  hiddenClsLabels=[],
   onBeginRegionEdit,
   onChangeRegion,
   onCloseRegionEdit,
@@ -32,14 +36,15 @@ export const RegionTags = ({
     RegionEditLabel != null ? RegionEditLabel : DefaultRegionLabel
   return regions
     .filter((r) => r.visible || r.visible === undefined)
+    .filter((r) => r.editingLabels || !hiddenClsLabels.includes(r.cls))
     .map((region) => {
       const pbox = projectRegionBox(region)
       const { iw, ih } = layoutParams.current
-      let margin = 8
+      let margin = (allowMetaText && !region.editingLabels)?0:8
       if (region.highlighted && region.type === "box") margin += 6
       const labelBoxHeight =
         region.editingLabels && !region.locked ? 170 : region.tags ? 60 : 50
-      const displayOnTop = pbox.y > labelBoxHeight
+      const displayOnTop = (allowMetaText && !region.editingLabels)? true : (pbox.y > labelBoxHeight)
 
       const coords = displayOnTop
         ? {
@@ -109,6 +114,9 @@ export const RegionTags = ({
             <RegionLabel
               allowedClasses={regionClsList}
               allowedTags={regionTagList}
+              allowMetaText={allowMetaText}
+              showClsLabel={showClsLabel}
+              showTextLabel={showTextLabel}
               onOpen={onBeginRegionEdit}
               onChange={onChangeRegion}
               onClose={onCloseRegionEdit}

@@ -22,6 +22,7 @@ import { useRafState } from "react-use"
 import PointDistances from "../PointDistances"
 import RegionTags from "../RegionTags"
 import RegionLabel from "../RegionLabel"
+import RegionLabelWithText from "../RegionLabelWithText"
 import ImageMask from "../ImageMask"
 import RegionSelectAndTransformBoxes from "../RegionSelectAndTransformBoxes"
 import VideoOrImageCanvasBackground from "../VideoOrImageCanvasBackground"
@@ -42,7 +43,10 @@ type Props = {
   dragWithPrimary?: boolean,
   zoomWithPrimary?: boolean,
   createWithPrimary?: boolean,
+  showClsLabel?: boolean,
+  showTextLabel?: boolean,
   showTags?: boolean,
+	hiddenClsLabels?: Array<string>,
   realSize?: { width: number, height: number, unitName: string },
   showCrosshairs?: boolean,
   showMask?: boolean,
@@ -52,6 +56,7 @@ type Props = {
   regionClsList?: Array<string>,
   regionTagList?: Array<string>,
   allowedArea?: { x: number, y: number, w: number, h: number },
+  allowMetaText?: boolean,
   RegionEditLabel?: Node,
   videoPlaying?: boolean,
   zoomOnAllowedArea?: boolean,
@@ -95,6 +100,9 @@ export const ImageCanvas = ({
   videoTime,
   realSize,
   showTags,
+  showClsLabel = true,
+	hiddenClsLabels = [],
+  showTextLabel = true,
   onMouseMove = (p) => null,
   onMouseDown = (p) => null,
   onMouseUp = (p) => null,
@@ -108,6 +116,7 @@ export const ImageCanvas = ({
   showHighlightBox = true,
   showPointDistances,
   allowedArea,
+  allowMetaText = false,
   RegionEditLabel = null,
   videoPlaying = false,
   showMask = true,
@@ -368,23 +377,30 @@ export const ImageCanvas = ({
             mouseEvents={mouseEvents}
             regionClsList={regionClsList}
             regionTagList={regionTagList}
+            allowMetaText={allowMetaText}
+						showClsLabel={showClsLabel}
+						showTextLabel={showTextLabel}
+						hiddenClsLabels={hiddenClsLabels}
             onBeginRegionEdit={onBeginRegionEdit}
             onChangeRegion={onChangeRegion}
             onCloseRegionEdit={onCloseRegionEdit}
             onDeleteRegion={onDeleteRegion}
             layoutParams={layoutParams}
             imageSrc={imageSrc}
-            RegionEditLabel={RegionEditLabel}
+            RegionEditLabel={allowMetaText?RegionLabelWithText:RegionEditLabel}
             onRegionClassAdded={onRegionClassAdded}
           />
         </PreventScrollToParents>
       )}
       {!showTags && highlightedRegion && (
+	  	allowMetaText?(
         <div key="topLeftTag" className={classes.fixedRegionLabel}>
           <RegionLabel
             disableClose
             allowedClasses={regionClsList}
             allowedTags={regionTagList}
+						showClsLabel={showClsLabel}
+						showTextLabel={showTextLabel}
             onChange={onChangeRegion}
             onDelete={onDeleteRegion}
             editing
@@ -392,6 +408,25 @@ export const ImageCanvas = ({
             imageSrc={imageSrc}
           />
         </div>
+		):(
+        <div key="topLeftTag" className={classes.fixedRegionLabel}>
+          <RegionLabelWithText
+            disableClose
+            allowedClasses={regionClsList}
+            allowedTags={regionTagList}
+            allowMetaText={allowMetaText}
+			showClsLabel={showClsLabel}
+			showTextLabel={showTextLabel}
+			showClsLabel={showClsLabel}
+			showTextLabel={showTextLabel}
+            onChange={onChangeRegion}
+            onDelete={onDeleteRegion}
+            editing
+            region={highlightedRegion}
+            imageSrc={imageSrc}
+          />
+        </div>
+		)
       )}
 
       {zoomWithPrimary && zoomBox !== null && (

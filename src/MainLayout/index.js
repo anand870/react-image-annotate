@@ -124,6 +124,10 @@ export const MainLayout = ({
       autoSegmentationOptions={state.autoSegmentationOptions}
       showTags={state.showTags}
       allowedArea={state.allowedArea}
+      allowMetaText={state.ocrMode}
+      showClsLabel={state.showClsLabel}
+      showTextLabel={state.showTextLabel}
+      hiddenClsLabels={state.hiddenClsLabels}
       modifyingAllowedArea={state.selectedTool === "modify-allowed-area"}
       regionClsList={state.regionClsList}
       regionTagList={state.regionTagList}
@@ -297,6 +301,22 @@ export const MainLayout = ({
                 name: "modify-allowed-area",
                 helperText: "Modify Allowed Area",
               },
+              state.ocrMode && {
+                name: "show-bg",
+                alwaysShowing: true,
+                helperText: "Show / Hide BackGround",
+              },
+              state.ocrMode && {
+                name: "show-text-label",
+                alwaysShowing: true,
+                helperText: "Show / Hide Text",
+              },
+              state.ocrMode && {
+                name: "show-class-label",
+                alwaysShowing: true,
+                helperText: "Show / Hide Class Label",
+              },
+
             ]
               .filter(Boolean)
               .filter(

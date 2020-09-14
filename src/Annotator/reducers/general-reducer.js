@@ -727,7 +727,18 @@ export default (state: MainLayoutState, action: Action) => {
     case "SELECT_TOOL": {
       if (action.selectedTool === "show-tags") {
         return setIn(state, ["showTags"], !state.showTags)
-      } else if (action.selectedTool === "show-mask") {
+      }
+      else if(action.selectedTool == "show-bg"){
+        //TODO Make it Generic
+        return setIn(state, ["hiddenClsLabels"], (state.hiddenClsLabels || []).length? []:['BG'])
+      }
+      else if(action.selectedTool == "show-text-label"){
+        return setIn(state, ["showTextLabel"], !state.showTextLabel)
+      }
+      else if(action.selectedTool == "show-class-label"){
+        return setIn(state, ["showClsLabel"], !state.showClsLabel)
+      }
+      else if (action.selectedTool === "show-mask") {
         return setIn(state, ["showMask"], !state.showMask)
       }
       if (action.selectedTool === "modify-allowed-area" && !state.allowedArea) {

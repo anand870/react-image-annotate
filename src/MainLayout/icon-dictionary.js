@@ -16,6 +16,9 @@ import {
   faSearch,
   faMask,
   faEdit,
+  faBold,
+  faPencilAlt,
+  faRocket
 } from "@fortawesome/free-solid-svg-icons"
 import FullscreenIcon from "@material-ui/icons/Fullscreen"
 
@@ -66,6 +69,15 @@ export const iconDictionary = {
   ),
   "modify-allowed-area": () => (
     <FontAwesomeIcon style={faStyle} size="xs" fixedWidth icon={faEdit} />
+  ),
+  "show-bg": () => (
+    <FontAwesomeIcon style={faStyle} size="xs" fixedWidth icon={faBold} />
+  ),
+  "show-class-label": () => (
+    <FontAwesomeIcon style={faStyle} size="xs" fixedWidth icon={faRocket} />
+  ),
+  "show-text-label": () => (
+    <FontAwesomeIcon style={faStyle} size="xs" fixedWidth icon={faPencilAlt} />
   ),
   window: FullscreenIcon,
 }

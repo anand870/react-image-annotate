@@ -11,6 +11,8 @@ import DialogContent from "@material-ui/core/DialogContent"
 import DialogActions from "@material-ui/core/DialogActions"
 import MonacoEditor from "react-monaco-editor"
 
+import panImg from "../ImageCanvas/pan.jpg"
+
 const useStyles = makeStyles({
   editBar: {
     padding: 10,
@@ -37,6 +39,273 @@ const loadSavedInput = () => {
   }
 }
 
+export const panTestRegions =[
+  {
+    "type": "box",
+    "id": "1",
+    "x": 0.2683222289521502,
+    "y": 0.05684007707129094,
+    "w": 0.15505754088431253,
+    "h": 0.08766859344894026,
+    "cls": "BG",
+    "visible": true,
+    "mText": "\u0935\u093f\u092d\u093e\u0917",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "2",
+    "x": 0.8013325257419746,
+    "y": 0.06165703275529865,
+    "w": 0.17019987886129617,
+    "h": 0.06165703275529865,
+    "cls": "BG",
+    "visible": true,
+    "mText": "\u0938\u0930\u0915\u093e\u0930",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "3",
+    "x": 0.6390066626287099,
+    "y": 0.06936416184971098,
+    "w": 0.12780133252574197,
+    "h": 0.05684007707129094,
+    "cls": "BG",
+    "visible": true,
+    "mText": "\u092d\u093e\u0930\u0924",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "4",
+    "x": 0.04603270745003028,
+    "y": 0.0789980732177264,
+    "w": 0.19321623258631132,
+    "h": 0.0626204238921002,
+    "cls": "BG",
+    "visible": true,
+    "mText": "\u0906\u092f\u0915\u0930",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "5",
+    "x": 0.7746820109024833,
+    "y": 0.16377649325626203,
+    "w": 0.059357964869775896,
+    "h": 0.05973025048169557,
+    "cls": "BG",
+    "visible": true,
+    "mText": "OF",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "6",
+    "x": 0.8358570563294972,
+    "y": 0.16377649325626203,
+    "w": 0.12780133252574197,
+    "h": 0.05684007707129094,
+    "cls": "BG",
+    "visible": true,
+    "mText": "INDIA",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "7",
+    "x": 0.6420351302241066,
+    "y": 0.16570327552986513,
+    "w": 0.12477286493034524,
+    "h": 0.05973025048169557,
+    "cls": "BG",
+    "visible": true,
+    "mText": "GOVT.",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "8",
+    "x": 0.21986674742580253,
+    "y": 0.1724470134874759,
+    "w": 0.20048455481526348,
+    "h": 0.0626204238921002,
+    "cls": "BG",
+    "visible": true,
+    "mText": "DEPARTMENT",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "9",
+    "x": 0.03331314354936402,
+    "y": 0.17630057803468208,
+    "w": 0.1265899454875833,
+    "h": 0.06358381502890173,
+    "cls": "BG",
+    "visible": true,
+    "mText": "INCOME",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "10",
+    "x": 0.16050878255602666,
+    "y": 0.17822736030828518,
+    "w": 0.059357964869775896,
+    "h": 0.057803468208092484,
+    "cls": "BG",
+    "visible": true,
+    "mText": "TAX",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "11",
+    "x": 0.23198061780738946,
+    "y": 0.28901734104046245,
+    "w": 0.14778921865536038,
+    "h": 0.051059730250481696,
+    "cls": "NAME",
+    "visible": true,
+    "mText": "SOLANKI",
+    "color": "#02C677",
+	//"highlighted": true
+  },
+  {
+    "type": "box",
+    "id": "12",
+    "x": 0.06056935190793458,
+    "y": 0.2947976878612717,
+    "w": 0.16414294367050272,
+    "h": 0.04720616570327553,
+    "cls": "NAME",
+    "visible": true,
+    "mText": "KHUSHBU",
+    "color": "#02C677",
+  },
+  {
+    "type": "box",
+    "id": "13",
+    "x": 0.1901877649909146,
+    "y": 0.4123314065510597,
+    "w": 0.14839491217443973,
+    "h": 0.04720616570327553,
+    "cls": "FNAME",
+    "visible": true,
+    "mText": "SOLANKI",
+    "color": "#43D9F8"
+  },
+  {
+    "type": "box",
+    "id": "14",
+    "x": 0.05754088431253786,
+    "y": 0.4142581888246628,
+    "w": 0.1265899454875833,
+    "h": 0.04720616570327553,
+    "cls": "FNAME",
+    "visible": true,
+    "mText": "PRAVIN",
+    "color": "#43D9F8"
+  },
+  {
+    "type": "box",
+    "id": "15",
+    "x": 0.06056935190793458,
+    "y": 0.5173410404624278,
+    "w": 0.19079345850999394,
+    "h": 0.057803468208092484,
+    "cls": "DOB",
+    "visible": true,
+    "mText": "10/01/1990",
+    "color": "#8EAA0C"
+  },
+  {
+    "type": "box",
+    "id": "16",
+    "x": 0.27013930950938825,
+    "y": 0.5886319845857418,
+    "w": 0.09812235009085403,
+    "h": 0.03468208092485549,
+    "cls": "BG",
+    "visible": true,
+    "mText": "Number",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "17",
+    "x": 0.02301635372501514,
+    "y": 0.5905587668593449,
+    "w": 0.13264688067837674,
+    "h": 0.03564547206165703,
+    "cls": "BG",
+    "visible": true,
+    "mText": "Permanent",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "18",
+    "x": 0.16050878255602666,
+    "y": 0.5905587668593449,
+    "w": 0.1029678982434888,
+    "h": 0.03564547206165703,
+    "cls": "BG",
+    "visible": true,
+    "mText": "Account",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "19",
+    "x": 0.04966686856450636,
+    "y": 0.651252408477842,
+    "w": 0.23622047244094488,
+    "h": 0.06165703275529865,
+    "cls": "PAN",
+    "visible": true,
+    "mText": "BVKPS6800A",
+    "color": "#58371B"
+  },
+  {
+    "type": "box",
+    "id": "20",
+    "x": 0.9545729860690491,
+    "y": 0.7129094412331407,
+    "w": 0.02483343428225318,
+    "h": 0.1811175337186898,
+    "cls": "DOI",
+    "visible": true,
+    "mText": "26042008",
+    "color": "#87DF93"
+  },
+  {
+    "type": "box",
+    "id": "21",
+    "x": 0.06541490006056935,
+    "y": 0.7514450867052023,
+    "w": 0.13567534827377348,
+    "h": 0.11175337186897881,
+    "cls": "BG",
+    "visible": true,
+    "mText": "Islands",
+    "color": "#458190"
+  },
+  {
+    "type": "box",
+    "id": "22",
+    "x": 0.015142337976983646,
+    "y": 0.8815028901734104,
+    "w": 0.11871592973955179,
+    "h": 0.04238921001926782,
+    "cls": "BG",
+    "visible": true,
+    "mText": "Signature",
+    "color": "#458190"
+  }
+]
 export const examples = {
   "Simple Bounding Box": () => ({
     taskDescription:
@@ -57,6 +326,23 @@ export const examples = {
         src:
           "https://www.bianchi.com/wp-content/uploads/2019/07/YPB17I555K.jpg",
         name: "bianchi-oltre-xr4",
+      },
+    ],
+  }),
+  "OCR Bounding Box": () => ({
+    taskDescription:
+      "Annotate each image according to this _markdown_ specification.",
+    // regionTagList: [],
+    // regionClsList: ["hotdog"],
+    regionClsList: ['DOI', 'DOB', 'PAN', 'FNAME', 'NAME', 'BG'],
+    enabledTools: ["select", "create-box"],
+    // showTags: true,
+	ocrMode:true,
+    images: [
+      {
+        src: panImg,
+        name: "pan1",
+		regions : panTestRegions
       },
     ],
   }),
